@@ -75,8 +75,16 @@ Hero.prototype = Object.create(GameObject.prototype);
 Hero.prototype = Object.create(CharacterStats.prototype);
 Hero.prototype = Object.create(Humanoid.prototype);
 
+Hero.prototype.isHere = function () {
+  return `${this.name}, our hero, is here!`;
+}
+
+Hero.prototype.struckBack = function () {
+  return `${this.name} uses ${this.weapons}, ${villian.name} moved, but was struck in the arm.`;
+}
+
 Hero.prototype.injured = function () {
-  return `${this.name} used ${this.weapons} against ${villian.name}, health has fallen to ${this.defeatedVillian}, ${villian.name} has been destroyed.`;
+  return `${this.name} used ${this.weapons} against ${villian.name}, health has fallen to ${this.defeatedVillian}, ${this.name} defeated ${villian.name}.`;
 };
 
 // Villian 
@@ -89,6 +97,14 @@ function Villian(villianAttrs) {
 Villian.prototype = Object.create(GameObject.prototype);
 Villian.prototype = Object.create(CharacterStats.prototype);
 Villian.prototype = Object.create(Humanoid.prototype);
+
+Villian.prototype.appeared = function () {
+  return `${this.name} appeared!`;
+}
+
+Villian.prototype.attacked = function () {
+  return `${this.name} attacked ${hero.name} with ${this.weapons}, but ${hero.name} blocked the attack.`;
+}
 
 Villian.prototype.fallen = function () {
   return `${this.name} struck ${hero.name} with ${this.weapons}, health has fallen to ${this.damageHealth}.`;
@@ -200,6 +216,10 @@ Villian.prototype.fallen = function () {
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  console.log(villian.appeared());
+  console.log(hero.isHere());
+  console.log(villian.attacked());
+  console.log(hero.struckBack());
   console.log(villian.fallen());
   console.log(hero.injured());
   // Stretch task: 
